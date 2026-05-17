@@ -1,11 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
     <title>futuere的小站</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- 只引CSS，JS放最底部 -->
+ 
 </head>
 <body>
 
@@ -13,14 +12,34 @@
     <h2 style="text-align: left;">futuere的小站</h2>
     <p>欢迎来到我的主页</p>
 </div>
-
+<!-- 这里是导航栏-->
+<ul id="mainNav" class="nav nav-tabs justify-content-center">
+  <li class="nav-item">
+    <a class="nav-link active" aria-current="page" href="#"  onclick="showHidePage('home')">首页</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="#" onclick="showHidePage('gaming')">趣味与游戏</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="#" onclick="showHidePage('study')">图标库和小功能练习</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" aria-disabled="true" onclick="showHidePage('blog')">个人博客</a>
+  </li>
+</ul>
 <div class="container text-center mt-5">
-    <div class="row g-4">
+    
+    <div class="row g-4" >
         <div class="col-md-4">
-            <div class="card">
+            <div class="card" id="gaming" style="display: block;">
+           
                 <img src="./image/OIP-C.jpg" class="card-img-top" alt="...">
                 <div class="card-body">
                     <h5 class="card-title text-primary">注册难点！</h5>
+                   <div class="d-flex gaps-3 justify-content-center">
+                    <span class="badge rounded-pill text-bg-info">趣味与游戏</span>    
+                     <div style="width: 10px;">    </div>
+                    <span class="badge rounded-pill text-bg-secondary">2026/5/17</span></div>
                     <p class="card-text">请您进入并尝试注册一个账号吧！</p>
                     <button type="button" class="btn btn-primary" id="openModalBtn">点击注册</button>
                 </div>
@@ -29,7 +48,7 @@
     </div>
 </div>
 
-<!-- 弹窗 -->
+
 <div class="modal fade" id="examGame1" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -38,7 +57,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form id="myForm" action="register.jsp" method="post">
+                <form id="myForm" action="register.html" method="get">
                     <div class="mb-3">
                         <label>用户名</label>
                         <input type="text" class="form-control" name="username">
@@ -66,18 +85,15 @@
     </div>
 </div>
 
-<!-- Bootstrap JS 放最底部，避免加载顺序问题 -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
+<script src="js/navShowHide.js"></script>
 <script>
-// 初始化弹窗
 const modal = new bootstrap.Modal(document.getElementById('examGame1'));
-// 点击按钮打开弹窗
 document.getElementById('openModalBtn').addEventListener('click', function(){
     modal.show();
 });
 
-// 手机号滑块
 let phoner = document.getElementById("phoner");
 let showPhone = document.getElementById("showPhone");
 let phone = document.getElementById("phone");
@@ -87,7 +103,6 @@ phoner.oninput = function(){
     phone.value = val;
 };
 
-// 表单校验
 let myForm = document.getElementById("myForm");
 myForm.addEventListener("submit", function(e){
     document.getElementById("genderTip").textContent = "";
